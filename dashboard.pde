@@ -193,8 +193,8 @@ public DashboardApplet() {
 }
 
 public void settings(){
-  size(960,512);
-  //fullScreen(2);
+  //size(960,512);
+  fullScreen(1);
 }
 
 public void setup(){
@@ -241,7 +241,8 @@ public void setup(){
   textSize(timerHeight);
   timerLabel = cp5.addTextlabel("TimerLabel")
                     .setText("0.0")
-                    .setPosition(dashboardWindowWidth/2-(int)textWidth("0.0")/2-(5),dashboardWindowHeight-(dashboardWindowHeight*9/20))
+                    //.setPosition(dashboardWindowWidth/2-(int)textWidth("0.0")/2-(5),dashboardWindowHeight-(dashboardWindowHeight*9/20))
+                    .setPosition(400,dashboardWindowHeight-(dashboardWindowHeight*9/20))
                     .setSize(timerBoxWidth,timerHeight)
                     .setColorValue(color(0,255,0))
                     .setFont(createFont("DejaVu Sans",timerHeight));
@@ -297,7 +298,7 @@ public void setup(){
      .setText("Ф.И.")
      .setPosition(playerBoxWidth+centerBoxWidth+playerNumberWidth,0)
      .setSize(playerNameWidth,teamFallsHeight)
-     .setColorValue(color(255,255,255))
+     //.setColorValue(color(255,255,255))
      .setFont(columnsLabelFont);
   cp5.addTextlabel("right"+"FallsColumnLabel")
      .setText("Фолы")
@@ -314,13 +315,24 @@ public void setup(){
 }
 
 public void SetTimerLabelPosition(String text){
-  textSize(timerHeight);
-  timerLabel.setPosition(dashboardWindowWidth/2-(int)textWidth(text)/2-(5), dashboardWindowHeight-(dashboardWindowHeight*9/20));
+  //textSize(timerHeight);
+  //timerLabel.setPosition(dashboardWindowWidth/2-(int)textWidth(text)/2-(5), dashboardWindowHeight-(dashboardWindowHeight*9/20));
+  
   //timerLabel.setPosition(playerBoxWidth, dashboardWindowHeight-(dashboardWindowHeight/3));
+  
+  if(timerLabel.get().getText().length() == 5){
+    timerLabel.setPosition(330, dashboardWindowHeight-(dashboardWindowHeight*9/20));
+  } else if(timerLabel.get().getText().length() == 4){
+    timerLabel.setPosition(360, dashboardWindowHeight-(dashboardWindowHeight*9/20));
+  } else if(timerLabel.get().getText().length() == 3){
+    timerLabel.setPosition(400, dashboardWindowHeight-(dashboardWindowHeight*9/20));
+  }
 }
 public void SetTimeoutTimerLabelPosition(String text){
-  textSize(timeoutHeight);
-  timeoutTimerLabel.setPosition(dashboardWindowWidth/2-(int)textWidth(text)/2-(5), timeoutTextLabel.getPosition()[1]+playerNameHeight);
+  //textSize(timeoutHeight);
+  //timeoutTimerLabel.setPosition(dashboardWindowWidth/2-(int)textWidth(text)/2-(5), timeoutTextLabel.getPosition()[1]+playerNameHeight);
+  
+  timeoutTimerLabel.setPosition(430, timeoutTextLabel.getPosition()[1]+playerNameHeight);
 }
 
 //public void pre() {

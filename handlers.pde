@@ -137,7 +137,7 @@ void controlEvent(ControlEvent theEvent) {
     timerEdit.timerTextfield.setText(timerEdit.TimerToStringEdit(timerEdit.periodTime));
     
     String dashboardTimeString = timerEdit.TimerToString(timerEdit.periodTime);
-    dashboard.SetTimerLabelPosition(dashboardTimeString);
     dashboard.timerLabel.setText(dashboardTimeString);
+    dashboard.SetTimerLabelPosition(dashboardTimeString);
   }
 }
