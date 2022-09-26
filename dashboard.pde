@@ -193,8 +193,8 @@ public DashboardApplet() {
 }
 
 public void settings(){
-  //size(960,512);
-  fullScreen(1);
+  size(960,512);
+  //fullScreen(1);
 }
 
 public void setup(){

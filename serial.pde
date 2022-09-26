@@ -60,9 +60,14 @@ class SerialButtons {
                                
                                if(serialButtons.startSerial.getCaptionLabel().getText() == "подкл"){
                                  serialButtons.startSerial.setCaptionLabel("откл");
+                                 //включаем тестирование
+                                 serialHandler.isTestingConnection = true;
+                                 serialHandler.startTestingTime = elapsedTime;
                                }
                                else{
                                  serialButtons.startSerial.setCaptionLabel("подкл");
+                                 //отключаем тестирование
+                                 serialHandler.isTestingConnection = false;
                                }
                              }
                              catch(Exception e){
@@ -99,7 +104,9 @@ class SerialHandler {
   //ByteBuffer bb = ByteBuffer.allocate(9);
   Serial serial = null;
   
-  boolean isSerialOpened = false;
+  boolean isTestingConnection = false;
+  int startTestingTime = 0;
+  final int periodTestingTime = 3000;
   
   int state = 0;
   int sendTimer = 0;
@@ -217,12 +224,29 @@ class SerialHandler {
   void Send(){
     if((state & STATE_ON) == STATE_ON) //посылаем, если включено
     {
-      bb.put((byte)state);
-      bb.putInt(sendTimer);
-      //bb.putInt(sendTimer);
-      serial.write(bb.array());
-      bb.rewind();
-      //println((byte)state+"+"+sendTimer);
+      if(isTestingConnection)
+      {
+        int testingTime = elapsedTime - startTestingTime;
+        
+        bb.put((byte)(STATE_ON | STATE_ONE_SEC_AFTER_PERIOD | STATE_ONE_SEC_AFTER_ATTACK));
+        bb.putInt(testingTime + deltaTime);
+        serial.write(bb.array());
+        bb.rewind();
+        //выключить тест через определенное время
+        if(testingTime >= periodTestingTime)
+        {
+          isTestingConnection = false;
+        }
+      }
+      else
+      {
+        bb.put((byte)state);
+        bb.putInt(sendTimer);
+        //bb.putInt(sendTimer);
+        serial.write(bb.array());
+        bb.rewind();
+        //println((byte)state+"+"+sendTimer);
+      }
     }
   }
 }
