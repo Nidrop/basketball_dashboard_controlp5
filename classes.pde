@@ -585,8 +585,8 @@ class TimerEdit {
             timerEdit.timerTextfield.setText(TimerToStringEdit(timerEdit.periodTime));
             
             String dashboardTimeString = TimerToString(timerEdit.periodTime);
-            dashboard.SetTimerLabelPosition(dashboardTimeString);
             dashboard.timerLabel.setText(dashboardTimeString);
+            dashboard.SetTimerLabelPosition(dashboardTimeString);
           }
         }
       });
