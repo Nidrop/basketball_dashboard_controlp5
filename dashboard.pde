@@ -55,7 +55,7 @@ class PlayerRow {
                     .setText(score)
                     .setPosition(x+width-numberWidth,y)
                     .setSize(numberWidth,height)
-                    .setColorValue(color(255,0,0))
+                    .setColorValue(color(255,255,0))
                     .setFont(font);
  }
  

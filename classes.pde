@@ -119,7 +119,7 @@ class PlayerRowEdit {
                     .setText(score)
                     .setPosition(x+width-playerScoreWidth+height*2,y)
                     .setSize(numberWidth,height)
-                    .setColorValue(color(255,0,0))
+                    .setColorValue(color(255,255,0))
                     .setFont(font);
    //scoreLabel = new Textlabel(cp5,score,x+width-playerScoreWidth+height*2,y,numberWidth,height);
    //scoreLabel.setColorValue(0xffff0000);
