@@ -11,7 +11,7 @@ DashboardApplet dashboard;
 
 ControlP5 cp5;
 
-int elapsedTime = 0, deltaTime = 100;
+int elapsedTime = 0, elapsedTimeCorrection = 0, deltaTime = 100;
 
 SerialButtons serialButtons;
 SerialHandler serialHandler;
@@ -59,13 +59,16 @@ void setup()
 void draw()
 {
   background(color(40,40,40));
-  if(millis() - elapsedTime >= deltaTime){
+  int newElapsedTime = millis();
+  int elapsedTimeDiff = newElapsedTime - elapsedTime;
+  if(elapsedTimeDiff >= (deltaTime - elapsedTimeCorrection)){
+    elapsedTime = newElapsedTime;
+    elapsedTimeCorrection = elapsedTimeDiff - (deltaTime - elapsedTimeCorrection);
+
     drawDashboardEdit();
     serialHandler.Recieve(timerEdit);
     serialHandler.SetStates(timerEdit);
     serialHandler.Send();
-    
-    elapsedTime = millis();
   }
   
   //lines
