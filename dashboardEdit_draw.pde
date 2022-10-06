@@ -200,8 +200,8 @@ void calculateTeamsScore(){
   rightTeamColumn.scoreLabel.setPosition(dashboardEditWindowWidth-playerBoxWidth-teamBoxWidth/2-(int)textWidth(String.valueOf(rightScoreSum))/2-(5),(dashboardWindowHeight/3));
   dashboard.leftTeamColumn.scoreLabel.setText(String.valueOf(leftScoreSum));
   dashboard.rightTeamColumn.scoreLabel.setText(String.valueOf(rightScoreSum));
-  dashboard.leftTeamColumn.scoreLabel.setPosition(dashboard.playerBoxWidth+dashboard.teamBoxWidth/2-(int)textWidth(String.valueOf(leftScoreSum))/2-(5),(dashboardWindowHeight/3));
-  dashboard.rightTeamColumn.scoreLabel.setPosition(dashboardWindowWidth-dashboard.playerBoxWidth-dashboard.teamBoxWidth/2-(int)textWidth(String.valueOf(rightScoreSum))/2-(5),(dashboardWindowHeight/3));
+  dashboard.leftTeamColumn.scoreLabel.setPosition(dashboard.playerBoxWidth+dashboard.teamBoxWidth/2-(int)textWidth(String.valueOf(leftScoreSum))/2-(dashboard.leftTeamColumn.scoreLabel.get().getText().length()*5),(dashboardWindowHeight/3));
+  dashboard.rightTeamColumn.scoreLabel.setPosition(dashboardWindowWidth-dashboard.playerBoxWidth-dashboard.teamBoxWidth/2-(int)textWidth(String.valueOf(rightScoreSum))/2-(dashboard.rightTeamColumn.scoreLabel.get().getText().length()*5),(dashboardWindowHeight/3));
 }
 
 void drawDashboardEdit(){

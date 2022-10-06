@@ -133,7 +133,7 @@ class TeamColumn {
                     .setText(score)
                     .setPosition(x+width/2 - (int)textWidth(score)/2-(5),y+nameHeight+countryHeight+(distanceBetween*2)+(height/6))
                     .setSize(width,scoreHeight)
-                    .setColorValue(color(255,255,255))
+                    .setColorValue(color(255,0,0))
                     .setFont(createFont("DejaVu Sans",scoreHeight));
    
    fallsLabel = cp5.addTextlabel(leftOrRight+"TeamFallsLabel")
@@ -176,7 +176,7 @@ int playersCount = 12;
 int playerNameHeight = 20;
 int teamNameHeight = 25;
 int teamCountryHeight = 20;
-int teamScoreHeight = 40;
+int teamScoreHeight = 60;
 int teamFallsHeight = 30;
 int teamTimeoutBoxesHeight = 20;
 int periodHeight = 40;
