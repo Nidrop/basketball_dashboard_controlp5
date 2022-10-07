@@ -150,7 +150,7 @@ void initDashboardEdit(){
      .setColorValue(color(255,255,255))
      .setFont(columnsLabelFont);
   cp5.addTextlabel("left"+"ScoreColumnLabel")
-     .setText("Счет")
+     .setText("Очки")
      .setPosition(playerNumberWidth+playerNameWidth+playerCirclesWidth,0)
      .setSize(playerNumberWidth,teamFallsHeight)
      .setColorValue(color(255,255,255))
@@ -175,7 +175,7 @@ void initDashboardEdit(){
      .setColorValue(color(255,255,255))
      .setFont(columnsLabelFont);
   cp5.addTextlabel("right"+"ScoreColumnLabel")
-     .setText("Счет")
+     .setText("Очки")
      .setPosition(playerBoxWidth+centerBoxWidth+playerNumberWidth+playerNameWidth+playerCirclesWidth,0)
      .setSize(playerNumberWidth,teamFallsHeight)
      .setColorValue(color(255,255,255))

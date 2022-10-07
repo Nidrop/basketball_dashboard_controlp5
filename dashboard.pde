@@ -282,7 +282,7 @@ public void setup(){
      .setColorValue(color(255,255,255))
      .setFont(columnsLabelFont);
   cp5.addTextlabel("left"+"ScoreColumnLabel")
-     .setText("Сч")
+     .setText("Оч")
      .setPosition(playerNumberWidth+playerNameWidth+playerCirclesWidth,0)
      .setSize(playerNumberWidth,teamFallsHeight)
      .setColorValue(color(255,255,255))
@@ -307,7 +307,7 @@ public void setup(){
      .setColorValue(color(255,255,255))
      .setFont(columnsLabelFont);
   cp5.addTextlabel("right"+"ScoreColumnLabel")
-     .setText("Сч")
+     .setText("Оч")
      .setPosition(playerBoxWidth+centerBoxWidth+playerNumberWidth+playerNameWidth+playerCirclesWidth,0)
      .setSize(playerNumberWidth,teamFallsHeight)
      .setColorValue(color(255,255,255))
