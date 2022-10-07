@@ -82,7 +82,7 @@ class SerialButtons {
  static final int STATE_ATTACK_PAUSE =         0b00010000;
  static final int STATE_ONE_SEC_AFTER_PERIOD = 0b00100000;
  static final int STATE_ONE_SEC_AFTER_ATTACK = 0b01000000;
- static final int STATE_ONE_SEC_AFTER_5_SEC_LEFT_PERIOD = 0b10000000;
+ static final int STATE_ONE_SEC_AFTER_TIMEOUT =0b10000000;
  
  /*
  static final byte STATE_BUTTON_ATTACK_14 =     (byte) 0b00100000;
@@ -199,11 +199,11 @@ class SerialHandler {
       state = state & (~STATE_TIMER_PAUSE);
     }
     
-    if(te.isFirstSecondAfter5SecLeftPeriod){
-      state = state | STATE_ONE_SEC_AFTER_5_SEC_LEFT_PERIOD;
+    if(te.isFirstSecondAfterTimeout){
+      state = state | STATE_ONE_SEC_AFTER_TIMEOUT;
     }
     else{
-      state = state & (~STATE_ONE_SEC_AFTER_5_SEC_LEFT_PERIOD);
+      state = state & (~STATE_ONE_SEC_AFTER_TIMEOUT);
     }
     
     if(te.isFirstSecondAfterPeriod){

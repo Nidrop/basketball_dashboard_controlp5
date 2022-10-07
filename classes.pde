@@ -426,11 +426,11 @@ class TimerEdit {
   int timeoutTime;
   
   int firstSecondAfterPeriodTimer = 0;
-  int firstSecondAfter5SecLeftPeriodTimer = 0;
+  int firstSecondAfterTimeoutTimer = 0;
   
   boolean isPaused = true, isPeriod = true, 
           isFirstSecondAfterPeriod = false,
-          isFirstSecondAfter5SecLeftPeriod = false;
+          isFirstSecondAfterTimeout = false;
   
   //Textlabel timerLabel;
   Button timerPause;
@@ -710,11 +710,6 @@ class TimerEdit {
         
         timerTextfield.setText(TimerToStringEdit(periodTime));
         
-        if(periodTime == 5000){
-          isFirstSecondAfter5SecLeftPeriod = true;
-          firstSecondAfter5SecLeftPeriodTimer = millis();
-        }
-        
         if(periodTime == 0){
           isPaused = true;
           timerPause.setCaptionLabel("старт");
@@ -729,12 +724,6 @@ class TimerEdit {
         if(millis() - firstSecondAfterPeriodTimer >= 1000){
           isFirstSecondAfterPeriod = false;
         }
-      }
-      
-      if(isFirstSecondAfter5SecLeftPeriod){
-        if(millis() - firstSecondAfter5SecLeftPeriodTimer >= 250){
-          isFirstSecondAfter5SecLeftPeriod = false;
-        }
       } 
     } 
     else 
@@ -745,7 +734,18 @@ class TimerEdit {
         String dashboardTimeString = TimerToString(timeoutTime);
         dashboard.SetTimeoutTimerLabelPosition(dashboardTimeString);
         dashboard.timeoutTimerLabel.setText(dashboardTimeString);
-      } 
+        
+        if(timeoutTime==0){
+          isFirstSecondAfterTimeout = true;
+          firstSecondAfterTimeoutTimer = millis();
+        }
+      }
+      
+      if(isFirstSecondAfterTimeout){
+        if(millis() - firstSecondAfterTimeoutTimer >= 1000){
+          isFirstSecondAfterTimeout = false;
+        }
+      }
     }
   }
 }
