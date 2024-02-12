@@ -569,7 +569,7 @@ class TimerEdit {
                       }
                  });
     cp5.addButton("TimerStop")
-      .setCaptionLabel("стоп")
+      .setCaptionLabel("сброс")
       .setPosition(x+width/2+(1),y+timerHeight+(height-timerHeight)/3)
       .setSize(width/2-(2),(height-timerHeight)/3)
       .setValue(0)
