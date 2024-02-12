@@ -418,6 +418,10 @@ class PeriodEdit {
   }
 }
 
+interface ITick {
+  int tick(int a, int b);
+}
+
 class TimerEdit {
   ControlP5 cp5;
   int x, y, width, height;
@@ -431,10 +435,15 @@ class TimerEdit {
   boolean isPaused = true, isPeriod = true, 
           isFirstSecondAfterPeriod = false,
           isFirstSecondAfterTimeout = false;
+          
+  ITick addTick;
+  ITick subTick;
+  ITick currentTick;
   
   //Textlabel timerLabel;
   Button timerPause;
   Textfield timerTextfield;
+  Button timerDirection;
   
   TimerEdit(ControlP5 cp5,
              int x, int y, int width, int height,
@@ -448,6 +457,18 @@ class TimerEdit {
     this.height = height;
     this.timerHeight = timerHeight;
     this.periodTime = periodTime;
+    
+    addTick = new ITick(){
+      int tick(int a, int b){
+        return a+b;
+      }
+    };
+    subTick = new ITick(){
+      int tick(int a, int b){
+        return a-b;
+      }
+    };
+    currentTick = subTick;
     
     textSize(timerHeight);
     PFont timerFont = createFont("DejaVu Sans",timerHeight-10);
@@ -621,6 +642,27 @@ class TimerEdit {
           }
         }
       });
+    timerDirection = cp5.addButton("TimerDirection")
+                    .setCaptionLabel("переключить на секундомер")
+                    .setPosition(x+(1),y+timerHeight+(height-timerHeight))
+                    .setSize(width-(2),(height-timerHeight)/3)
+                    .setValue(0)
+                    .setFont(buttonsFont)
+                    .addCallback(new CallbackListener(){
+                      public void controlEvent(CallbackEvent theEvent) {
+                        if (theEvent.getAction()==ControlP5.ACTION_PRESSED) {
+                          
+                          if(currentTick == subTick){
+                            currentTick = addTick;
+                            timerEdit.timerDirection.setCaptionLabel("переключить на таймер");
+                          }
+                          else{
+                            currentTick = subTick;
+                            timerEdit.timerDirection.setCaptionLabel("переключить на секундомер");
+                          }
+                        }
+                      }
+                 });
   }
   
   String TimerToString(int timer){
@@ -702,7 +744,7 @@ class TimerEdit {
   void Draw(PApplet p){
     if(isPeriod){
       if(periodTime>0 && !isPaused){
-        periodTime -= deltaTime;
+        periodTime = currentTick.tick(periodTime, deltaTime);
         
         String dashboardTimeString = TimerToString(periodTime);
         dashboard.SetTimerLabelPosition(dashboardTimeString);
@@ -718,6 +760,11 @@ class TimerEdit {
           isFirstSecondAfterPeriod = true;
           firstSecondAfterPeriodTimer = millis();
         }
+      }
+      
+      //хак для секундомера
+      if(currentTick == addTick && periodTime == 0){
+        periodTime = currentTick.tick(periodTime, deltaTime);
       }
       
       if(isFirstSecondAfterPeriod){
