@@ -91,7 +91,7 @@ void initDashboardEdit(){
   String RightTeamScore = "0";
   String RightTeamFalls = "0";
   
-  buttonsFont = createFont("DejaVu Sans",13);
+  //buttonsFont = createFont("DejaVu Sans",13);
   
   leftPlayers = new PlayerRowEdit[playersCount];
   rightPlayers = new PlayerRowEdit[playersCount];
